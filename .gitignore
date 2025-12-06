@@ -1,6 +1,7 @@
 .pal
 __pycache__
-/db/restaurantes.json
 /db/restaurantes.db
-/db/nota_media.db
+utils_eloy.txt
+
+
 
