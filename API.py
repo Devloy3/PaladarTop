@@ -64,17 +64,15 @@ class Api:
     
         @self.app.route('/nota_fecha', methods=['GET'])
         def promedio_con_fecha():
-            nota = self.db.promedio_total()
-            fecha = date.today()
-            fecha_string = fecha.strftime("%d-%m-%y")
-            return jsonify({"Nota": nota, "Fecha": fecha_string})
+            FechaNota = self.db.select_and_create_notas_medias()
+            return jsonify([{"Fecha": Fecha, "Nota": Nota} for Fecha,Nota in FechaNota])
+
     
         @self.app.route('/nota', methods=['GET'])
         def promedio():
             promedio = self.db.promedio_total()
             return jsonify({"Nota": promedio})
-    
-    
+        
     def encender(self):
         self.app.run(port=3000)
 

@@ -1,4 +1,5 @@
 import sqlite3
+from datetime import date
 
 class Relacional:
     def __init__(self, db_path="./db/restaurantes.db"):
@@ -79,3 +80,24 @@ class Relacional:
         conn.close()
         return final
     
+    def select_and_create_notas_medias(self):
+        NotaMedia = self.promedio_total()
+        Fecha = date.today()
+        FechaString = Fecha.strftime("%Y-%m-%d")
+
+        conn = self.conectar()
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT * FROM NotasMedias ORDER BY Fecha DESC LIMIT 1;")
+        Ultima = cursor.fetchone()
+
+        if Ultima is None or FechaString != Ultima[0] or NotaMedia != Ultima[1]:
+            cursor.execute("INSERT INTO NotasMedias(Fecha,NotaMedia) VALUES (?,?)", (FechaString,NotaMedia))
+
+        cursor.execute("SELECT * FROM NotasMedias ORDER BY Fecha DESC")
+        FinalNotasMedias = cursor.fetchall
+        
+        conn.commit()
+        conn.close()
+
+        return FinalNotasMedias
