@@ -1,0 +1,88 @@
+/* PaladarTop Custom Styles */
+
+/* Fuente global */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f3f4f6;
+  color: #343a40;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #f3f4f6;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.navbar .btn {
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+.navbar .btn:hover {
+  background-color: #fff;
+  color: #007bff;
+}
+
+/* Cards */
+.card {
+  background-color: #adcde2;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+}
+.card-header {
+  background-color: #adcde2;
+  border-radius: 20px;
+  border-bottom: none;
+}
+.card:hover {
+  transform: translateY(+5px);
+};
+
+/* Registro form */
+form label {
+  font-weight: 600;
+  color: #495057;
+}
+form .form-control {
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+  transition: border-color 0.3s ease;
+}
+form .form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(186, 188, 190, 0.25);
+}
+form button {
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-weight: 600;
+}
+
+/* Tabla */
+.table thead th {
+  background-color: #adcde2;
+  color: #ffffff;
+  font-size: 0.8rem;
+}
+.table tbody tr:hover {
+  background-color: #f1f3f5;
+}
+
+/* Evolución chart container */
+.chart {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* Icono score */
+.icon-shape {
+  width: 80px;          /* ancho fijo */
+  height: 80px;         /* alto fijo */
+  border-radius: 50%;   /* círculo perfecto */
+  display: flex;        /* centra contenido */
+  align-items: center;
+  justify-content: center
+}

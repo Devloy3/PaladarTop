@@ -154,7 +154,7 @@ function grafico(fecha,nota) {
             ticks: {
               display: true,
               padding: 10,
-              color: '#b2b9bf',
+              color: '#000000ff',
               font: {
                 size: 11,
                 family: "Inter",
@@ -173,7 +173,7 @@ function grafico(fecha,nota) {
             },
             ticks: {
               display: true,
-              color: '#b2b9bf',
+              color: '#000000ff',
               padding: 20,
               font: {
                 size: 11,
