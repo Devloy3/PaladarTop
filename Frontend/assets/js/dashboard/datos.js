@@ -44,12 +44,15 @@ fetch("http://127.0.0.1:3000/nota_fecha")
     return response.json();
 })
 .then(data => {
-    const nota = data["Nota"]
-    const fecha = data["Fecha"]
-    console.log(fecha)
-    console.log(nota)
-    console.log(typeof fecha); 
-    grafico(fecha,nota)
+    const notas = [];
+    const fechas = [];
+
+    data.forEach(item => {
+        notas.push(item.Nota);
+        fechas.push(item.Fecha);
+    });
+
+    grafico(fechas, notas);
 })
 
 fetch("http://127.0.0.1:3000")
@@ -101,15 +104,6 @@ fetch("http://127.0.0.1:3000")
 
 function grafico(fecha,nota) {
   
-  const Notas = JSON.parse(localStorage.getItem("Notas")) || [];
-  const Fechas = JSON.parse(localStorage.getItem("Fechas")) || [];
-
-  Notas.push(nota)
-  Fechas.push(fecha)
-    
-  localStorage.setItem("Notas", JSON.stringify(Notas))
-  localStorage.setItem("Fechas", JSON.stringify(Fechas))
-
   var ctx2 = document.getElementById("chart-line").getContext("2d");
   
     var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
@@ -121,7 +115,7 @@ function grafico(fecha,nota) {
     new Chart(ctx2, {
       type: "line",
       data: {
-        labels: Fechas,
+        labels: fecha,
         datasets: [{
           label: "Promedio",
           tension: 0.4,
@@ -131,7 +125,7 @@ function grafico(fecha,nota) {
           borderWidth: 3,
           backgroundColor: gradientStroke2,
           fill: true,
-          data: Notas,
+          data: nota,
           maxBarThickness: 6
         },
         ],

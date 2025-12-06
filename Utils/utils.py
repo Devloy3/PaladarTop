@@ -16,7 +16,11 @@ sql = ('''
                 
                 CREATE TABLE IF NOT EXISTS NotasMedias(
                 Fecha DATE,
-                NotaMedia DECIMAL(2,2));'''
+                NotaMedia DECIMAL(2,2));
+       
+                CREATE TABLE RestaurantesAñadidos (
+                Fecha TEXT,
+                Cantidad INT)'''
                )
 
 cursor.executescript(sql)

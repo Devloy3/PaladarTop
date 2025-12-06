@@ -46,20 +46,26 @@ class Api:
     
         @self.app.route('/insertar_restaurante', methods=['POST'])
         def insertar_restaurante():
-            nombre = request.form.get("nombre")
-            decoracion = float(request.form.get("decoracion"))
-            menu = float(request.form.get("menu"))
-            comida = float(request.form.get("comida"))
-            servicio = float(request.form.get("servicio"))
-            precio = float(request.form.get("precio"))
-            self.db.crear_restaurante(nombre,decoracion,menu,comida,servicio,precio)
-            return jsonify ({"Nombre": nombre,
+            try:
+                Hoy = date.today()
+                HoyStr = Hoy.strftime("%Y-%m-%d")
+                nombre = request.form.get("nombre")
+                decoracion = float(request.form.get("decoracion"))
+                menu = float(request.form.get("menu"))
+                comida = float(request.form.get("comida"))
+                servicio = float(request.form.get("servicio"))
+                precio = float(request.form.get("precio"))
+                self.db.crear_restaurante(nombre,decoracion,menu,comida,servicio,precio)
+                self.db.cantidad_resturantes_insertados(1,HoyStr)
+                return jsonify ({"Nombre": nombre,
                          "Decoracion": decoracion,
                          "Menu": menu,
                          "Comida": comida,
                          "Servicio": servicio,
                          "Precio": precio
                          })
+            except Exception as e:
+                return jsonify({"status": "error", "message": str(e)}), 400
        
     
         @self.app.route('/nota_fecha', methods=['GET'])

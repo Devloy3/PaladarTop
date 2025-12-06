@@ -94,10 +94,18 @@ class Relacional:
         if Ultima is None or FechaString != Ultima[0] or NotaMedia != Ultima[1]:
             cursor.execute("INSERT INTO NotasMedias(Fecha,NotaMedia) VALUES (?,?)", (FechaString,NotaMedia))
 
-        cursor.execute("SELECT * FROM NotasMedias ORDER BY Fecha DESC")
-        FinalNotasMedias = cursor.fetchall
+        cursor.execute("SELECT * FROM NotasMedias ORDER BY Fecha ASC")
+        FinalNotasMedias = cursor.fetchall()
         
         conn.commit()
         conn.close()
 
         return FinalNotasMedias
+    
+    def cantidad_resturantes_insertados(self,cantidad,fecha):
+        conn = self.conectar()
+        cursor = conn.cursor()
+
+        cursor.execute("INSERT INTO RestaurantesAñadidos(Fecha,Cantidad) VALUES (?,?)", (fecha,cantidad))
+        conn.commit()
+        conn.close()
