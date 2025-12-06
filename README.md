@@ -18,7 +18,7 @@ Para eso el puntuaje el puntaje esta dividido en:
 
 ## Fotos de la App
 
-![foto](./Frontend/assets/img/captura.png)
+
 
 ## Instalacion:
 
