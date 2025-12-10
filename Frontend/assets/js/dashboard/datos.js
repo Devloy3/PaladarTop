@@ -3,25 +3,25 @@ document.getElementById("Formulario").addEventListener("submit", function(e){
 
  const formData = new FormData(this);
 
-    fetch('http://localhost:3000/insertar_restaurante', {
+  fetch('http://localhost:8000/insertar_restaurante', {
       method: 'POST',
       body: formData
-    })
-    .then(response => {
-      if (!response.ok) throw new Error('Error en la respuesta del servidor');
+  })
+  .then(response => {
+    if (!response.ok) throw new Error('Error en la respuesta del servidor');
       return response.json(); 
-    })
-    .then(data => {
-      alert('Restaurante insertado correctamente');
-      console.log(data);
-    })
-    .catch(error => {
-      alert('Hubo un error al enviar los datos');
-      console.error(error);
+  })
+  .then(data => {
+    alert('Restaurante insertado correctamente');
+    console.log(data);
+  })
+  .catch(error => {
+    alert('Hubo un error al enviar los datos');
+    console.error(error);
     });
 });
 
-fetch("http://127.0.0.1:3000/nota")
+fetch("http://127.0.0.1:8000/nota")
 .then(response => {
     if (!response.ok){
         throw new Error("Ha fallado la API");
@@ -36,7 +36,7 @@ fetch("http://127.0.0.1:3000/nota")
         console.log("Fallo en el envio de nota", error);
 });
 
-fetch("http://127.0.0.1:3000/nota_fecha")
+fetch("http://127.0.0.1:8000/nota_fecha/")
 .then(response => {
     if (!response.ok){
         throw new Error("Ha fallado la API");
@@ -55,7 +55,7 @@ fetch("http://127.0.0.1:3000/nota_fecha")
     grafico(fechas, notas);
 })
 
-fetch("http://127.0.0.1:3000")
+fetch("http://127.0.0.1:8000/")
 .then(response => {
     if (!response.ok){
         throw new Error("Ha fallado la API");

@@ -80,7 +80,7 @@ class Relacional:
         conn.close()
         return final
     
-    def select_and_create_notas_medias(self):
+    def CreateNotasMediasFecha(self):
         NotaMedia = self.promedio_total()
         Fecha = date.today()
         FechaString = Fecha.strftime("%Y-%m-%d")
@@ -94,6 +94,10 @@ class Relacional:
         if Ultima is None or FechaString != Ultima[0] or NotaMedia != Ultima[1]:
             cursor.execute("INSERT INTO NotasMedias(Fecha,NotaMedia) VALUES (?,?)", (FechaString,NotaMedia))
 
+    def ReadNotasMedias(self):
+        conn = self.conectar()
+        cursor = conn.cursor()
+        
         cursor.execute("SELECT * FROM NotasMedias ORDER BY Fecha ASC")
         FinalNotasMedias = cursor.fetchall()
         
