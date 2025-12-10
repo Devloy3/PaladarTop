@@ -2,7 +2,6 @@ from fastapi import FastAPI,Form
 from fastapi.middleware.cors import CORSMiddleware
 from db.db import Relacional
 from datetime import date
-import asyncio
 
 
 class Api:
