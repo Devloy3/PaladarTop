@@ -1,4 +1,4 @@
-fetch("http://127.0.0.1:3000/mostrar_puntaje")
+fetch("http://127.0.0.1:8000/mostrar_puntaje")
 .then(response => {
     if (!response.ok){
         throw new Error("Ha fallado la API");
