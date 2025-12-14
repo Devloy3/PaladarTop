@@ -1,6 +1,7 @@
 import sqlite3
 import aiosqlite
 from datetime import date
+import asyncio
 
 class Relacional:
     def __init__(self, db_path="./db/restaurantes.db"):
@@ -72,33 +73,36 @@ class Relacional:
         conn.close()
         return promedio
     
-    def promedio_total(self):
-        conn = self.conectar()
-        cursor = conn.cursor()
-        cursor.execute("SELECT (AVG(Decoracion)+AVG(Menu)+AVG(Comida)+AVG(Servicio)+AVG(Precio))/5 AS promedio_total FROM restaurantes")
-        total = cursor.fetchone()
-        final = round(total[0],2)
-        conn.close()
-        return final
+    async def promedio_total(self):
+        async with aiosqlite.connect("restaurantes.db") as conn:
+            cursor = await conn.execute("SELECT (AVG(Decoracion)+AVG(Menu)+AVG(Comida)+AVG(Servicio)+AVG(Precio))/5 AS promedio_total FROM restaurantes")
+            PromedioTotal = await cursor.fetchone()
+            await conn.close()
+        
+        return round(PromedioTotal[0],2)
     
-    async def CreateNotasMediasFecha(self):
-        NotaMedia = await self.promedio_total()
+    def CreateNotasMediasFecha(self):
+        loop = asyncio.get_event_loop()
+        NotaMedia = loop.run_until_complete(self.promedio_total())
         Fecha = date.today()
         FechaString = Fecha.strftime("%Y-%m-%d")
 
-        async with aiosqlite.connect("restaurantes.db") as conn:
-          cursor = await conn.cursor.execute("SELECT * FROM NotasMedias ORDER BY Fecha DESC LIMIT 1;")
-          Ultima = await cursor.fetchone()
-          await conn.close()
+        conn = self.conectar()
+        cursor = conn.cursor()
+        
+        cursor.execute("SELECT * FROM NotasMedias ORDER BY Fecha DESC LIMIT 1;")
+        Ultima = cursor.fetchone()
 
-          if Ultima is None or FechaString != Ultima[0] or NotaMedia != Ultima[1]:
-            await conn.execute("INSERT INTO NotasMedias(Fecha,NotaMedia) VALUES (?,?)", (FechaString,NotaMedia))
-            await conn.commit()
+        if Ultima is None or FechaString != Ultima[0] or NotaMedia != Ultima[1]:
+            conn.execute("INSERT INTO NotasMedias(Fecha,NotaMedia) VALUES (?,?)", (FechaString,NotaMedia))
+            conn.commit()
+            
+        conn.close()
     
     async def ReadNotasMedias(self):
         async with aiosqlite.connect("restaurantes.db") as conn:
             cursor = await conn.execute("SELECT * FROM NotasMedias ORDER BY Fecha ASC")
-            FinalNotasMedias = cursor.fetchall()
+            FinalNotasMedias = await cursor.fetchall()
             await cursor.close()
 
         return FinalNotasMedias

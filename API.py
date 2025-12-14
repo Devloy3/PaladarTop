@@ -57,12 +57,12 @@ class Api:
     
         @self.app.post('/insertar_restaurante')
         def insertar_restaurante(  
-        nombre: str = Form(...),
-        decoracion: float = Form(...),
-        menu: float = Form(...),
-        comida: float = Form(...),
-        servicio: float = Form(...),
-        precio: float = Form(...)):
+            nombre: str = Form(...),
+            decoracion: float = Form(...),
+            menu: float = Form(...),
+            comida: float = Form(...),
+            servicio: float = Form(...),
+            precio: float = Form(...)):
             try:
                 Hoy = date.today()
                 HoyStr = Hoy.strftime("%Y-%m-%d")
@@ -80,14 +80,14 @@ class Api:
        
     
         @self.app.get('/nota_fecha')
-        def promedio_con_fecha():
-            FechaNota = self.db.ReadNotasMedias()
+        async def promedio_con_fecha():
+            FechaNota = await self.db.ReadNotasMedias()
             return [{"Fecha": Fecha, "Nota": Nota} for Fecha,Nota in FechaNota]
         
     
         @self.app.get('/nota')
-        def promedio():
-            Promedio = self.db.promedio_total()
+        async def promedio():
+            Promedio = await self.db.promedio_total()
             return ({"Nota": Promedio})
 
 
