@@ -81,6 +81,7 @@ class Api:
     
         @self.app.get('/nota_fecha')
         async def promedio_con_fecha():
+            await self.db.CreateNotasMediasFecha()
             FechaNota = await self.db.ReadNotasMedias()
             return [{"Fecha": Fecha, "Nota": Nota} for Fecha,Nota in FechaNota]
         

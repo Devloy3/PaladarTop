@@ -77,13 +77,11 @@ class Relacional:
         async with aiosqlite.connect("restaurantes.db") as conn:
             cursor = await conn.execute("SELECT (AVG(Decoracion)+AVG(Menu)+AVG(Comida)+AVG(Servicio)+AVG(Precio))/5 AS promedio_total FROM restaurantes")
             PromedioTotal = await cursor.fetchone()
-            await conn.close()
         
         return round(PromedioTotal[0],2)
     
-    def CreateNotasMediasFecha(self):
-        loop = asyncio.get_event_loop()
-        NotaMedia = loop.run_until_complete(self.promedio_total())
+    async def CreateNotasMediasFecha(self):
+        NotaMedia = await self.promedio_total()
         Fecha = date.today()
         FechaString = Fecha.strftime("%Y-%m-%d")
 
