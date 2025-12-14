@@ -92,5 +92,6 @@ class Api:
             return ({"Nota": Promedio})
 
 
+
 api = Api()
 app = api.app

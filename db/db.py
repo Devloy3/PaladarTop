@@ -74,7 +74,7 @@ class Relacional:
         return promedio
     
     async def promedio_total(self):
-        async with aiosqlite.connect("restaurantes.db") as conn:
+        async with aiosqlite.connect("./db/restaurantes.db") as conn:
             cursor = await conn.execute("SELECT (AVG(Decoracion)+AVG(Menu)+AVG(Comida)+AVG(Servicio)+AVG(Precio))/5 AS promedio_total FROM restaurantes")
             PromedioTotal = await cursor.fetchone()
         
@@ -88,17 +88,18 @@ class Relacional:
         conn = self.conectar()
         cursor = conn.cursor()
         
-        cursor.execute("SELECT * FROM NotasMedias ORDER BY Fecha DESC LIMIT 1;")
+        cursor.execute("SELECT NotaMedia FROM NotasMedias WHERE Fecha=? ORDER BY rowid DESC LIMIT 1;",(FechaString,))
         Ultima = cursor.fetchone()
 
-        if Ultima is None or FechaString != Ultima[0] or NotaMedia != Ultima[1]:
+
+        if Ultima is None or float(NotaMedia) != Ultima[0]:
             conn.execute("INSERT INTO NotasMedias(Fecha,NotaMedia) VALUES (?,?)", (FechaString,NotaMedia))
             conn.commit()
             
         conn.close()
     
     async def ReadNotasMedias(self):
-        async with aiosqlite.connect("restaurantes.db") as conn:
+        async with aiosqlite.connect("./db/restaurantes.db") as conn:
             cursor = await conn.execute("SELECT * FROM NotasMedias ORDER BY Fecha ASC")
             FinalNotasMedias = await cursor.fetchall()
             await cursor.close()
