@@ -66,19 +66,17 @@ fetch("http://127.0.0.1:8000/")
     const tabla = document.getElementById("contenedor");
     data.forEach(element => {
       const fila = document.createElement("tr")
-      const columna = document.createElement("td")
+      const columna = document.createElement("td");
+      columna.classList.add("hola");
       
       const columna_2 = document.createElement("td")
-      columna_2.className = "text-sm"
+      columna_2.classList.add("notas", "text-sm");
       
       
       const division = document.createElement("div")
-      division.className = "d-flex px-2 py-1"
+      division.className = "d-flex py-1 justify-center"
       
-      const division_2 = document.createElement("div");
-      division_2.className = "d-flex flex-column justify-content-center";
-      
-      const nombre = document.createElement("h6");
+     const nombre = document.createElement("h6");
       nombre.className = "mb-0 text-sm";
 
       const nota = document.createElement("span")
@@ -87,8 +85,8 @@ fetch("http://127.0.0.1:8000/")
       nombre.textContent = element.Nombre || element.nombre;
       nota.textContent = element.Nota 
 
-      division_2.appendChild(nombre)
-      division.appendChild(division_2)
+      
+      division.appendChild(nombre)
       columna.appendChild(division)
       fila.appendChild(columna)
       tabla.appendChild(fila)
@@ -179,7 +177,7 @@ function grafico(fecha,nota) {
                 size: 11,
                 family: "Inter",
                 style: 'normal',
-                lineHeight: 2
+                lineHeight: 3
               },
             }
           },
