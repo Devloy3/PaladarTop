@@ -21,8 +21,15 @@ fetch("http://127.0.0.1:8000/mostrar_puntaje")
       columna_4.className = "text-sm text-center"
       columna_5.className = "text-sm text-center"
       columna_6.className = "text-sm text-center"
-      columna.className = "text-sm"; 
-     
+      columna.className = "text-sm"
+
+      columna.classList.add("nombre")
+      columna_2.classList.add("decoracion")
+      columna_3.classList.add("menu")
+      columna_4.classList.add("comida")
+      columna_5.classList.add("servicio")
+      columna_6.classList.add("precio")
+
       
       const nombre = document.createElement("h6");
       nombre.className = "text-sm";
@@ -46,15 +53,15 @@ fetch("http://127.0.0.1:8000/mostrar_puntaje")
       precio.textContent = element.Precio  
 
       
+      
+      
       columna.appendChild(nombre)
-      fila.appendChild(columna)
-      tabla.appendChild(fila)
-
       columna_2.appendChild(decoracion)
       columna_3.appendChild(menu)
       columna_4.appendChild(comida)
       columna_5.appendChild(servicio)
       columna_6.appendChild(precio)
+      fila.appendChild(columna)
       fila.appendChild(columna_2)
       fila.appendChild(columna_3)
       fila.appendChild(columna_4)

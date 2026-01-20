@@ -1,0 +1,103 @@
+/* ===========================
+   ESTILO GENERAL
+=========================== */
+
+body {
+  background-color: #f3f4f6;
+  font-family: 'Inter', sans-serif;
+}
+
+main {
+  padding-top: 20px;
+}
+
+/* ===========================
+   NAVBAR
+=========================== */
+
+.navbar {
+  background-color: #f3f4f6 !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.navbar img {
+  height: 90px;
+}
+
+.navbar .btn {
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.navbar .btn:hover {
+  background-color: #e66b1a;
+  color: white;
+}
+
+/* ===========================
+   TARJETA
+=========================== */
+
+.card {
+  background-color: #adcde2 !important;
+  border: none !important;
+  border-radius: 20px !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2) !important;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.card-header {
+  background-color: #adcde2 !important;
+  border-radius: 20px 20px 0 0 !important;
+  padding: 15px 20px !important;
+  color: black !important;
+  border-bottom: none;
+}
+
+.card-header h6 {
+  font-weight: 700;
+  margin: 0;
+}
+
+/* ===========================
+   TABLA
+=========================== */
+
+.table {
+  background-color: #adcde2;
+  border-radius: 10px;
+  overflow: hidden;
+   box-shadow: 0 4px 10px rgba(0,0,0,0.2)
+}
+
+.table thead th {
+  background-color: #8bb8d1;
+  color: #333;
+  font-weight: 700;
+  padding: 12px;
+  font-size: 0.75rem;
+}
+
+td.nombre {
+    border-top: 2px solid  orange;
+}
+td.decoracion {
+    border-top: 2px solid  orange;
+}
+td.menu{
+    border-top: 2px solid  orange;
+}
+td.comida {
+    border-top: 2px solid  orange;
+}
+td.servicio {
+    border-top: 2px solid  orange;
+}
+td.precio {
+    border-top: 2px solid  orange;
+}
+
+
