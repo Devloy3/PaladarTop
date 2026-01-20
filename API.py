@@ -31,30 +31,6 @@ class Api:
             Puntaje = [{"Nombre": nombre, "Decoracion": decoracion, "Menu": menu, "Cocina": cocina, "Servicio": servicio, "Precio": precio} for nombre,decoracion,menu,cocina,servicio,precio in datos]
             return Puntaje
     
-        @self.app.get('/decoracion')
-        def decoracion():
-            datos = self.db.mostrar_decoracion()
-            Decoracion = [{"Nombre": nombre, "Decoracion": decoracion, "Menu": menu, "Cocina": cocina, "Servicio": servicio, "Precio": precio} for nombre,decoracion,menu,cocina,servicio,precio in datos]
-            return Decoracion
-        
-        @self.app.get('/menu')
-        def menu():
-            datos = self.db.mostrar_menu()
-            Menu = [{"Nombre": nombre, "Decoracion": decoracion, "Menu": menu, "Cocina": cocina, "Servicio": servicio, "Precio": precio} for nombre,decoracion,menu,cocina,servicio,precio in datos]
-            return Menu
-        
-        @self.app.get('/servicio')
-        def servicio():
-            datos = self.db.mostrar_servicio()
-            Servicio = [{"Nombre": nombre, "Decoracion": decoracion, "Menu": menu, "Cocina": cocina, "Servicio": servicio, "Precio": precio} for nombre,decoracion,menu,cocina,servicio,precio in datos]
-            return Servicio 
-        
-        @self.app.get('/precio')
-        def precio():
-            datos = self.db.mostrar_precio()
-            Precio = [{"Nombre": nombre, "Decoracion": decoracion, "Menu": menu, "Cocina": cocina, "Servicio": servicio, "Precio": precio} for nombre,decoracion,menu,cocina,servicio,precio in datos]
-            return Precio
-    
         @self.app.post('/insertar_restaurante')
         def insertar_restaurante(  
             nombre: str = Form(...),

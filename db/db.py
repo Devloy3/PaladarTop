@@ -25,46 +25,6 @@ class Relacional:
         conn.close()
         return todo
     
-    def mostrar_decoracion(self):
-        conn = self.conectar()
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM restaurantes ORDER BY Decoracion")
-        decoracion = cursor.fetchall()
-        conn.close()
-        return decoracion
-    
-    def mostrar_menu(self):
-        conn = self.conectar()
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM restaurantes ORDER BY Menu")
-        menu = cursor.fetchall()
-        conn.close()
-        return menu
-    
-    def mostrar_comida(self):
-        conn = self.conectar()
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM restaurantes ORDER BY Comida")
-        comida = cursor.fetchall()
-        conn.close()
-        return comida
-    
-    def mostrar_servicio(self):
-        conn = self.conectar()
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM restaurantes ORDER BY Servicio")
-        servicio = cursor.fetchall()
-        conn.close()
-        return servicio
-    
-    def mostrar_precio(self):
-        conn = self.conectar()
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM restaurantes ORDER BY Precio")
-        precio = cursor.fetchall()
-        conn.close()
-        return precio
-    
     def promedio_restaurante(self):
         conn = self.conectar()
         cursor = conn.cursor()
