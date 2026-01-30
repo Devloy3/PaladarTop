@@ -20,19 +20,19 @@ class Api:
     def rutas(self):
         
         @self.app.get('/')
-        def mostrar_nota_media():
-            datos = self.db.promedio_restaurante()
+        async def mostrar_nota_media():
+            datos = await self.db.promedio_restaurante()
             NotaMedia = [{"Nombre": nombre, "Nota": nota } for nombre,nota in datos]
             return NotaMedia
 
         @self.app.get('/mostrar_puntaje')
-        def mostrar_todo():
-            datos = self.db.mostrar_restaurantes()
+        async def mostrar_todo():
+            datos = await self.db.mostrar_restaurantes()
             Puntaje = [{"Nombre": nombre, "Decoracion": decoracion, "Menu": menu, "Cocina": cocina, "Servicio": servicio, "Precio": precio} for nombre,decoracion,menu,cocina,servicio,precio in datos]
             return Puntaje
     
         @self.app.post('/insertar_restaurante')
-        def insertar_restaurante(  
+        async def insertar_restaurante(  
             nombre: str = Form(...),
             decoracion: float = Form(...),
             menu: float = Form(...),
@@ -42,8 +42,8 @@ class Api:
             try:
                 Hoy = date.today()
                 HoyStr = Hoy.strftime("%Y-%m-%d")
-                self.db.crear_restaurante(nombre,decoracion,menu,comida,servicio,precio)
-                self.db.cantidad_resturantes_insertados(1,HoyStr)
+                await self.db.crear_restaurante(nombre,decoracion,menu,comida,servicio,precio)
+                await self.db.cantidad_resturantes_insertados(1,HoyStr)
                 return ({"Nombre": nombre,
                          "Decoracion": decoracion,
                          "Menu": menu,
