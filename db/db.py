@@ -53,7 +53,7 @@ class Relacional:
     
     async def ReadNotasMedias(self):
         async with aiosqlite.connect(self.db_path) as conn:
-            async with conn.execute("SELECT * FROM NotasMedias ORDER BY Fecha ASC") as cursor:
+            async with conn.execute("SELECT * FROM NotasMedias ORDER BY Fecha ASC LIMIT 5") as cursor:
                 FinalNotasMedias = await cursor.fetchall()
                 return FinalNotasMedias
     

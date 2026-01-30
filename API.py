@@ -42,7 +42,7 @@ class Api:
             try:
                 Hoy = date.today()
                 HoyStr = Hoy.strftime("%Y-%m-%d")
-                await self.db.crear_restaurante(nombre,decoracion,menu,comida,servicio,precio)
+                await self.db.CrearRestaurante(nombre,decoracion,menu,comida,servicio,precio)
                 await self.db.cantidad_resturantes_insertados(1,HoyStr)
                 return ({"Nombre": nombre,
                          "Decoracion": decoracion,
