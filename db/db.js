@@ -1,9 +1,31 @@
-const sqlite3 = require('sqlite3').verbose(); 
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database(process.env.DB_PATH);
 
-db = new sqlite3.Database(process.env.DB_PATH, (err) => { 
-    if (err) { 
-        console.error('Error al conectar:', err.message); 
-    } else { 
-        console.log('Conectado a SQLite'); } });
+function queryAll(sql, params = []) {
+  return new Promise((resolve, reject) => {
+    db.all(sql, params, (err, rows) => {
+      if (err) reject(err);
+      else resolve(rows);
+    });
+  });
+}
 
-module.exports = db
+function queryGet(sql, params = []) {
+  return new Promise((resolve, reject) => {
+    db.get(sql, params, (err, row) => {
+      if (err) reject(err);
+      else resolve(row);
+    });
+  });
+}
+
+function queryRun(sql, params = []) {
+  return new Promise((resolve, reject) => {
+    db.run(sql, params, function (err) {
+      if (err) reject(err);
+      else resolve({ id: this.lastID, changes: this.changes });
+    });
+  });
+}
+
+module.exports = { db, queryAll, queryGet, queryRun };
