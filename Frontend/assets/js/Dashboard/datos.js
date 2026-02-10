@@ -4,7 +4,7 @@ function formulario(){
 
   const formData = new FormData(this);
 
-    fetch('http://localhost:8000/api/restaurantes/InsertarRestaurante"', {
+    fetch('http://localhost:8000/api/restaurantes/InsertarRestaurante', {
         method: 'POST',
         body: formData
     })
