@@ -1,6 +1,8 @@
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(process.env.DB_PATH);
 
+db.serialize()
+
 function queryAll(sql, params = []) {
   return new Promise((resolve, reject) => {
     db.all(sql, params, (err, rows) => {
@@ -28,4 +30,4 @@ function queryRun(sql, params = []) {
   });
 }
 
-module.exports = { db, queryAll, queryGet, queryRun };
+module.exports = { queryAll, queryGet, queryRun };

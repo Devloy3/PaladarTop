@@ -65,7 +65,7 @@ function Grafico(){
 }
 
 function Restaurantes() {
-  fetch("http://127.0.0.1:8000/api/restaurantes/NotaMedia*Restaurante")
+  fetch("http://127.0.0.1:8000/api/restaurantes/NotaMediaRestaurante")
   .then(response => {
       if (!response.ok){
           throw new Error("Ha fallado la API");
@@ -93,8 +93,8 @@ function Restaurantes() {
         const nota = document.createElement("span")
         nota.className = "text-xs font-weight-bold"
         
-        nombre.textContent = element.Nombre || element.nombre;
-        nota.textContent = element.Nota 
+        nombre.textContent = element.Restaurante;
+        nota.textContent = element.Promedio;
 
         
         division.appendChild(nombre)
