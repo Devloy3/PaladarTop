@@ -3,5 +3,7 @@ __pycache__
 /db/restaurantes.db
 utils_eloy.txt
 .env
+/node_modules
+restaurantes.db
 
 

@@ -1,6 +1,6 @@
 import sqlite3 
 
-conn = sqlite3.connect("../db/restaurantes.db")
+conn = sqlite3.connect("../restaurantes.db")
 cursor = conn.cursor()
 
 sql = ('''
