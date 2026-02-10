@@ -57,7 +57,7 @@ async function NotasMedias1(req,res,next){
         const fechaString = fecha.toLocaleDateString("es-ES"); 
 
         const Promedio = await PromedioTotal();
-        const valor = Promedio?.PromedioTotal || 0
+        const valor = Promedio?.Nota || 0
         const Busqueda = await queryGet(sql.CreateNotasMedias1, [fechaString])
             
         if(!Busqueda){
