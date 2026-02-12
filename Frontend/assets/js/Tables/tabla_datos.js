@@ -45,10 +45,10 @@ fetch("http://127.0.0.1:8000/api/restaurantes")
       const precio = document.createElement("span")
       precio.className = "text-xs font-weight-bold text-center"
       
-      nombre.textContent = element.Nombre || element.nombre;
+      nombre.textContent = element.Restaurante;
       decoracion.textContent = element.Decoracion
       menu.textContent = element.Menu
-      comida.textContent = element.Cocina
+      comida.textContent = element.Comida
       servicio.textContent = element.Servicio  
       precio.textContent = element.Precio  
 
