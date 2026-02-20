@@ -4,7 +4,7 @@ function formulario(){
 
   const formData = new FormData(this);
 
-    fetch('http://localhost:8000/api/restaurantes/InsertarRestaurante', {
+    fetch('/InsertarRestaurante', {
         method: 'POST',
         body: formData
     })
@@ -27,7 +27,7 @@ function formulario(){
 }
 
 function Notas(){
-  fetch("http://127.0.0.1:8000/api/restaurantes/NotaMedia")
+  fetch("/NotaMedia")
   .then(response => {
       if (!response.ok){
         throw new Error("Ha fallado la API");
@@ -44,13 +44,15 @@ function Notas(){
 }
 
 function Grafico(){
-  fetch("http://127.0.0.1:8000/api/restaurantes/NotaMediaFecha")
-  .then(response => {
-      if (!response.ok){
-          throw new Error("Ha fallado la API");
-      }
-      return response.json();
+  const fecha = new Date()
+  const fechaString = fecha.toLocaleDateString("es-ES"); 
+
+  fetch("/NotaMediaFecha", { 
+    method: "POST", 
+    headers: { "Content-Type": "application/json" }, 
+    body: JSON.stringify({ fecha: fechaString }) 
   })
+  
   .then(data => {
       const notas = [];
       const fechas = [];

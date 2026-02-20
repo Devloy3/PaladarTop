@@ -6,7 +6,7 @@ const controller = require("../controllers/RestaurantesController")
 routes.get("/",controller.Mostrar)
 routes.get("/NotaMediaRestaurante",controller.Promedio)
 routes.post("/InsertarRestaurante",controller.Insertar,controller.RestaurantesInsertados)
-routes.get("/NotaMediaFecha",controller.NotasMedias1,controller.NotasMedias2)
+routes.post("/NotaMediaFecha",controller.NotasMedias1,controller.NotasMedias2)
 routes.get("/NotaMedia",controller.PromedioTotal2)
 
 module.exports = routes;
