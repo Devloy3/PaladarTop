@@ -4,9 +4,22 @@ function formulario(){
 
   const formData = new FormData(this);
 
-    fetch('/InsertarRestaurante', {
+  const fecha = new Date()
+  const fechaString = fecha.toISOString().split("T")[0]
+
+  const datosCompletos = {
+        nombre: formData.get('nombre'),
+        decoracion: parseFloat(formData.get('decoracion')),
+        menu: formData.get('menu'),
+        comida: parseFloat(formData.get('comida')),
+        servicio: parseFloat(formData.get('servicio')),
+        precio: formData.get('precio'),
+        fecha: fechaString
+    };
+    fetch('/api/InsertarRestaurante', {
         method: 'POST',
-        body: formData
+        headers: { "Content-Type": "application/json" },
+        body:JSON.stringify(datosCompletos)
     })
     .then(response => {
       if (!response.ok) throw new Error('Error en la respuesta del servidor');

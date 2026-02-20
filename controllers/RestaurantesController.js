@@ -14,13 +14,15 @@ async function Mostrar(req, res) {
 async function Insertar(req,res,next) {
         try{
             const {nombre,decoracion,menu,comida,servicio,precio} = req.body;
-            await queryRun(sql.Insertar, [nombre,decoracion,menu,comida,servicio,precio]);
+            await queryRun(sql.Insertar, [nombre,decoracion,menu,comida,servicio])
+            req.datos = {"Fecha":req.body.fecha}
             next()
         } catch (error){
             res.status(500).json({error: error.message});
         }
 
 }
+
 
 async function Promedio(req,res) {
         try {
@@ -80,15 +82,17 @@ async function NotasMedias2(req,res){
 
 async function RestaurantesInsertados(req,res) {
         try {
-            const fecha = new Date()
-            const fechaString = fecha.toLocaleDateString("es-ES"); 
+             const fecha1 = req.datos || {}
+             const dato = fecha1.fecha
 
-            await queryRun(sql.CantidadRestaurantesInsertados, [fechaString,1])
-            res.json({"Insertado": "Corectamente"})
+            await queryRun(sql.CantidadRestaurantesInsertados, [dato, 1])
+            res.json({"Insertado": "Correctamente"})
         } catch (error) {
             res.status(500).json({error: error.message})
         }
-}
+    }
+
+
 
 module.exports = {NotasMedias2,NotasMedias1,Insertar,Mostrar,PromedioTotal2,PromedioTotal,Promedio,RestaurantesInsertados}
 
